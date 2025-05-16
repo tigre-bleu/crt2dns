@@ -96,7 +96,9 @@ def scan(input):
         print_not_quiet(Fore.YELLOW, f'[!] SSL handshake error while connecting to {host}:{port} ({e})', Fore.RESET)
     except ConnectionRefusedError as e:
         print_not_quiet(Fore.YELLOW, f'[!] Connection refused while connecting to {host}:{port} ({e})', Fore.RESET)
-    except e:
+    except ConnectionResetError as e:
+        print_not_quiet(Fore.YELLOW, f'[!] Connection reset while connecting to {host}:{port} ({e})', Fore.RESET)
+    except Exception as e:
         print_not_quiet(Fore.YELLOW, f'[!] Unexpected error while connecting to {host}:{port} ({e})', Fore.RESET)
         
     return found_hostnames
