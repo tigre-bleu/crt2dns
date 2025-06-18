@@ -149,10 +149,11 @@ with alive_bar(len(tls_endpoints), title='Scanning', enrich_print=False) as bar:
     print(Fore.CYAN, f'[+] {len(hostnames)} items found', Fore.RESET)
     
     if args.output:
-        os.makedirs(os.path.dirname(args.output), exist_ok=True)
+        if not os.path.basename(args.output) == args.output:
+            os.makedirs(os.path.dirname(args.output), exist_ok=True)
         fp = open(args.output, 'w') 
         for hostname in hostnames:
-            fp.write(f'hostname\n')
+            fp.write(f'{hostname}\n')
         fp.close()
         print_not_quiet(Fore.CYAN, f'[+] Result saved in {args.output}', Fore.RESET)
         
