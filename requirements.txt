@@ -2,3 +2,4 @@ alive-progress
 requests
 urllib3
 colorama
+cryptography
